@@ -5,6 +5,9 @@
     "packages/ui-packages/ui"
   ],
   "scripts": {
+    "build-web": "docker build -t web . -f Dockerfile.web",
+    "build-shell": "docker build -t shell . -f Dockerfile.shell",
+    "build-apps": "pnpm run build-web && pnpm run build-shell",
     "web": "docker run -it -p 3001:3001 --env-file ./.env.web web",
     "shell": "docker run -it -p 3000:3000 --env-file ./.env.shell shell",
     "build": "turbo run build",
