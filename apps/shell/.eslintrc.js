@@ -1,18 +1,9 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-  extends: ["next", "custom"],
-  settings: {
-    next: {
-      rootDir: ["apps/*/"]
-    }
-  },
-  rules: {
-    "@next/next/no-html-link-for-pages": "off",
-    "@next/next/no-img-element": "off",
-  },
-    parserOptions: {
-    babelOptions: {
-      presets: [require.resolve("next/babel")],
-    },
+  extends: ["@repo/eslint-config/next.js"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: true,
   },
 };
