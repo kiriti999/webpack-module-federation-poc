@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@repo/ui": "workspace:*",
+    "next": "13.4.0",
+    "next-i18next": "14.0.3"
+  },
+  "devDependencies": {
+    "@module-federation/nextjs-mf": "6.4.0",
+    "autoprefixer": "10.4.14",
+    "webpack": "5.78.0",
+    "@types/react": "18.0.22",
+    "@types/react-dom": "18.0.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "main": "./index.ts",
+  "name": "shell",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --port 3000",
+    "lint": "next lint",
+    "start": "next start --port 3000",
+    "test": "jest --cache --runInBand=true"
+  },
+  "types": "./index.ts",
+  "version": "0.1.0"
+}
