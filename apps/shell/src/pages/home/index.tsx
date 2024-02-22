@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import dynamic from "next/dynamic";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
+// eslint-disable-next-line no-undef
 const HomeMicroFrontend: ComponentType<any> = dynamic(
     //@ts-ignore
     //Stryker disable next-line all
