@@ -1,25 +1,12 @@
-
 FROM node:18-alpine3.15 AS base
 
-FROM base AS builder
+FROM base AS installer
 # Set working directory
 WORKDIR /app
 RUN npm -g i pnpm@8.6.10 turbo
-ADD . .
-RUN turbo prune --scope=shell --docker 
-
-# Add lockfile and package.json's of isolated subworkspace
-FROM base AS installer
-RUN npm -g i pnpm@8.6.10
+COPY . .
 WORKDIR /app
-
-# First install the dependencies (as they change less often)
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN pnpm install
-
-# Build the project
-COPY --from=builder /app/out/full/ .
 RUN pnpm build --filter=shell
 
 FROM base AS runner
@@ -37,6 +24,5 @@ COPY --from=installer /app/apps/shell/package.json .
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/static ./apps/shell/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/public ./apps/shell/public
 
 CMD node apps/shell/server.js

@@ -4,7 +4,7 @@ const MFE_HOST = {
   production: 'http://localhost:3001',
   development: 'http://localhost:3001',
   // ISSUE HERE: We need to use the below custom key 'dev: url' as env so that it runs localhost url
-  dev: 'http://localhost:3001',
+  dev: 'http://dev.mfe-exterit', // assume this dev env is deployment and we got url
 }
 
 module.exports = {
