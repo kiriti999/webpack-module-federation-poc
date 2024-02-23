@@ -1,4 +1,5 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
+const {getMicroFrontendURL} = require('./utils');
 
 const MFE_HOST = {
   production: 'http://localhost:3001',
@@ -19,6 +20,10 @@ module.exports = {
     const { isServer } = options;
     config.experiments = { topLevelAwait: true, layers: true };
     config.plugins.push(
+      new EnvironmentPlugin({
+        APP_ENV: "{{APP_ENV}}",
+        NODE_ENV: "{{NODE_ENV}}"
+      }),
       new NextFederationPlugin({
         name: "shell",
         remotes: {
