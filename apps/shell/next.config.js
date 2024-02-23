@@ -1,5 +1,4 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
-const {getMicroFrontendURL} = require('./utils');
 
 const MFE_HOST = {
   production: 'http://localhost:3001',
