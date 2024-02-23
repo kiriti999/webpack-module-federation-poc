@@ -1,4 +1,5 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
+const { EnvironmentPlugin } = require('webpack');
 
 const MFE_HOST = {
   production: 'http://localhost:3001',
@@ -18,11 +19,16 @@ module.exports = {
     console.log('BASE_URL:', BASE_URL)
     const { isServer } = options;
     config.experiments = { topLevelAwait: true, layers: true };
+
+    // Use EnvironmentPlugin to set environment variables
     config.plugins.push(
       new EnvironmentPlugin({
         APP_ENV: "{{APP_ENV}}",
         NODE_ENV: "{{NODE_ENV}}"
-      }),
+      })
+    );
+
+    config.plugins.push(
       new NextFederationPlugin({
         name: "shell",
         remotes: {
