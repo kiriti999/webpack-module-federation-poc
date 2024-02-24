@@ -5,6 +5,10 @@ FROM base AS installer
 WORKDIR /app
 RUN npm -g i pnpm@8.6.10 turbo
 COPY . .
+
+ADD shell.sh /usr/local/bin/shell.sh
+RUN chmod 777 /usr/local/bin/shell.sh
+
 WORKDIR /app
 RUN pnpm install
 RUN pnpm build --filter=shell
@@ -31,5 +35,6 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/static ./apps/
 # CMD ["sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
 # CMD ["bash", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
 
-CMD ["/bin/sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
+# CMD ["/bin/sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
+CMD /usr/local/bin/shell.sh
 
