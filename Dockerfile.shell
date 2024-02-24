@@ -6,9 +6,6 @@ WORKDIR /app
 RUN npm -g i pnpm@8.6.10 turbo
 COPY . .
 
-ADD shell.sh /usr/local/bin/shell.sh
-RUN chmod 777 /usr/local/bin/shell.sh
-
 WORKDIR /app
 RUN pnpm install
 RUN pnpm build --filter=shell
@@ -26,9 +23,8 @@ COPY --from=installer /app/apps/shell/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-# COPY /app/changedEnv.sh /app
-RUN echo ls -ltrah
 COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/shell.sh /app/shell.sh/
 COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/static ./apps/shell/.next/static
 
 # CMD node apps/shell/server.js
@@ -36,5 +32,5 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/static ./apps/
 # CMD ["bash", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
 
 # CMD ["/bin/sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
-CMD /usr/local/bin/shell.sh
+CMD ["sh", "shell.sh"]
 
