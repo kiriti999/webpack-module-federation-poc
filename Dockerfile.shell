@@ -22,7 +22,14 @@ COPY --from=installer /app/apps/shell/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
+# COPY /app/changedEnv.sh /app
+RUN echo ls -ltrah
 COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/static ./apps/shell/.next/static
 
-CMD node apps/shell/server.js
+# CMD node apps/shell/server.js
+# CMD ["sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
+# CMD ["bash", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
+
+CMD ["/bin/sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
+
