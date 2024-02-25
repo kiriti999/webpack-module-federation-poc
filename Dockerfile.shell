@@ -29,12 +29,6 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/shell.sh /app/shell.sh
 COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/static ./apps/shell/.next/static
 
-# CMD node apps/shell/server.js
-# CMD ["sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
-# CMD ["bash", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
-
-# CMD ["/bin/sh", "-c", '/app/changeEnv.sh && node apps/shell/server.js']
-
-# RUN cd apps/shell/.next && find . -type f -exec sed -i 's|localhost:3001|$URL|g' {} +
+RUN cd apps/shell/.next && find . -type f -exec sed -i "s|{BASE_URL}|$URL|g" {} + && cd ..
 CMD [ "node", "/app/apps/shell/server.js" ]
 
