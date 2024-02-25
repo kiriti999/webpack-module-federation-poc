@@ -7,9 +7,9 @@
   "scripts": {
     "build-web": "docker build -t web . -f Dockerfile.web",
     "build-shell": "docker build -t shell . -f Dockerfile.shell",
-    "build-apps": "pnpm run build-web && pnpm run build-shell",
-    "web": "docker run -it -p 3001:3001 --env-file ./.env.web web",
-    "shell": "docker run -it -p 3000:3000 --env-file ./.env.shell shell",
+    "build-apps": "pnpm run build-shell && pnpm run build-web",
+    "web": "docker run -it -p 3001:3000 web",
+    "shell": "docker run -it -p 3000:3000 -e URL=sample2.com shell",
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency=15",
     "lint": "turbo lint",

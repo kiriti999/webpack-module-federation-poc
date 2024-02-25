@@ -21,15 +21,14 @@ RUN adduser --system --uid 1001 nextjs
 RUN chown nextjs:nodejs /app
 USER nextjs
 
-COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/next.config.js .
-COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/package.json .
+COPY --chown=nextjs:nodejs apps/shell/next.config.js .
+COPY --chown=nextjs:nodejs apps/shell/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/standalone /app/
-COPY --from=installer --chown=nextjs:nodejs /app/shell.sh /app/shell.sh
-COPY --from=installer --chown=nextjs:nodejs /app/apps/shell/.next/static ./apps/shell/.next/static
+COPY --chown=nextjs:nodejs apps/shell/.next/standalone /app/standalone
+COPY --chown=nextjs:nodejs apps/shell/.next/static ./apps/shell/.next/static
+COPY --chown=nextjs:nodejs shell.sh /app/shell.sh
 
-# CMD [ "node", "/app/apps/shell/server.js" ]
 CMD [ "sh", "shell.sh" ]
 
