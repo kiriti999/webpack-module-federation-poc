@@ -26,8 +26,8 @@ COPY --chown=nextjs:nodejs apps/shell/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --chown=nextjs:nodejs apps/shell/.next/standalone /app/standalone
-COPY --chown=nextjs:nodejs apps/shell/.next/static ./apps/shell/.next/static
+# COPY --chown=nextjs:nodejs apps/shell/.next/standalone /app/standalone
+# COPY --chown=nextjs:nodejs apps/shell/.next/static ./apps/shell/.next/static
 COPY --chown=nextjs:nodejs shell.sh /app/shell.sh
 
 CMD [ "sh", "shell.sh" ]
