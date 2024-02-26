@@ -1,6 +1,6 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
 
-const MFE_HOST_URL = ''
+const MFE_HOST_URL = 'http://127.0.0.1:3001'
 
 module.exports = {
   output: "standalone",
@@ -14,8 +14,8 @@ module.exports = {
       new NextFederationPlugin({
         name: "shell",
         remotes: {
-          home: `home@/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
-          // home: `home@${MFE_HOST_URL}/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
+          // home: `home@http://127.0.0.1:3001/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
+          home: `home@${MFE_HOST_URL}/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
         },
         exposes: {
           "./EmptyComponent": "./src/Empty.component.tsx"
