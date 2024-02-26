@@ -14,7 +14,8 @@ module.exports = {
       new NextFederationPlugin({
         name: "shell",
         remotes: {
-          home: `home@${MFE_HOST_URL}/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
+          home: `home@http://127.0.0.1:3001/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
+          // home: `home@${MFE_HOST_URL}/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
         },
         exposes: {
           "./EmptyComponent": "./src/Empty.component.tsx"
