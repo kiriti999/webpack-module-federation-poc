@@ -11,7 +11,7 @@ echo "Current working directory is: $current_directory"
 js_file_path="apps/shell/.next/static/ssr/remoteEntry.js"
 
 # Use grep to find the line containing the URL
-line=$(grep -A 2 '"home":' "apps/shell/.next/static/ssr/remoteEntry.js" | grep -oE '"(http|https)://[^"]*"')
+line=$(grep -A 2 '"home":' apps/shell/.next/static/ssr/remoteEntry.js | grep -oE '"(http|https)://[^"]*"')
 
 # Use awk to extract the URL
 current_url=$(echo "$line" | grep -Eo 'https?://[^ /]+' | head -1)
@@ -24,6 +24,8 @@ find ./apps/shell/.next/standalone/apps/shell/.next/server/webpack-runtime.js -t
 find ./apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
 find ./apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
 find ./apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+find ./apps/shell/.next/standalone/apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+find ./apps/shell/.next/standalone/apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
 
 node apps/shell/.next/standalone/apps/shell/server.js
 

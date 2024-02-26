@@ -32,6 +32,7 @@ COPY --chown=nextjs:nodejs apps/shell/package.json ./apps/shell/package.json
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 # COPY --chown=nextjs:nodejs apps/shell/.next/standalone /app/standalone
 # COPY --chown=nextjs:nodejs apps/shell/.next/static ./apps/shell/.next/static
+RUN cp -r /app/apps/shell/.next/static /app/apps/shell/.next/standalone/apps/shell/.next/
 COPY --chown=nextjs:nodejs shell.sh /app/shell.sh
 
 USER nextjs
