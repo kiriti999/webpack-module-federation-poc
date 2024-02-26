@@ -14,10 +14,6 @@ RUN pnpm build --filter=shell
 FROM installer AS runner
 WORKDIR /app
 
-# RUN addgroup --system --gid 1001 nodejs
-# RUN adduser --system --uid 1001 nextjs
-# RUN chown nextjs:nodejs /app
-
 RUN addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs \
     && chown nextjs:nodejs /app \
