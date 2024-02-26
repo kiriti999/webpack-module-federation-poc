@@ -9,7 +9,7 @@
     "build-shell": "docker build -t shell . -f Dockerfile.shell",
     "build-apps": "pnpm run build-shell && pnpm run build-web",
     "web": "docker run -it -p 3001:3000 web",
-    "shell": "docker run -it -p 3000:3000 -e URL=sample2.com shell",
+    "shell": "docker run -it -p 3000:3000 -e URL=https://sample.com shell",
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency=15",
     "lint": "turbo lint",

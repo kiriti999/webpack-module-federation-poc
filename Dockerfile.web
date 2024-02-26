@@ -3,11 +3,18 @@ FROM node:18-alpine3.15 AS base
 FROM base AS installer
 # Set working directory
 WORKDIR /app
+RUN npm -g i pnpm@8.6.10 turbo
 COPY . .
 
-# Don't run production as root
+RUN pnpm install
+RUN pnpm build --filter=web
+
+FROM installer AS runner
+WORKDIR /app
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
+RUN chown nextjs:nodejs /app
 USER nextjs
 
 COPY --chown=nextjs:nodejs apps/web/next.config.js .

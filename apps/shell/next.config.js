@@ -1,19 +1,12 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
 
-const MFE_HOST = {
-  production: 'http://localhost:3001',
-  development: 'http://localhost:3001',
-  // ISSUE HERE: We need to use the below custom key 'dev: url' as env so that it runs localhost url
-  dev: 'http://localhost:3001', // assume this dev env is deployment and we got url
-}
+const MFE_HOST_URL = 'http://localhost:3001'
 
 module.exports = {
   output: "standalone",
   reactStrictMode: true,
   transpilePackages: ["@repo/ui"],
   webpack: (config, options) => {
-    const BASE_URL = MFE_HOST[process.env["APP_ENV"]];
-    console.log('BASE_URL:', BASE_URL)
     const { isServer } = options;
     config.experiments = { topLevelAwait: true, layers: true };
     
@@ -21,8 +14,7 @@ module.exports = {
       new NextFederationPlugin({
         name: "shell",
         remotes: {
-          // home: `home@http://127.0.0.1:3001/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
-          home: `home@${BASE_URL}/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
+          home: `home@${MFE_HOST_URL}/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`
         },
         exposes: {
           "./EmptyComponent": "./src/Empty.component.tsx"
