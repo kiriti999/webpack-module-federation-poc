@@ -24,7 +24,7 @@ RUN addgroup --system --gid 1001 nodejs \
     && find /app/apps/web/next.config.js -exec chown nextjs:nodejs {} + \
     && find /app/apps/web/.next/standalone/apps/web/.next/server/webpack-runtime.js -exec chown nextjs:nodejs {} + \
     && find /app/apps/web/.next/server/webpack-runtime.js -exec chown nextjs:nodejs {} + \
-    && find /app/apps/web/.next/static/chunks/pages -exec chown -R nextjs:nodejs {} + \
+    && find /app/apps/web/.next/static -exec chown -R nextjs:nodejs {} + \
     && find /app/apps/web/.next/static/ssr/remoteEntry.js -exec chown nextjs:nodejs {} +
 
 COPY --chown=nextjs:nodejs apps/web/next.config.js .

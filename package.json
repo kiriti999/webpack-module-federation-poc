@@ -2,7 +2,7 @@
   "name": "webpack-module-federation-poc",
   "private": true,
   "workspaces": [
-    "packages/ui-packages/ui"
+    "packages/ui"
   ],
   "scripts": {
     "build-web": "docker build -t web . -f Dockerfile.web",
