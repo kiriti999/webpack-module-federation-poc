@@ -1,6 +1,6 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
 
-const MFE_HOST_URL = 'http://localhost:3001'
+const MFE_HOST_URL = 'http://127.0.0.1:3001'
 
 module.exports = {
   output: "standalone",

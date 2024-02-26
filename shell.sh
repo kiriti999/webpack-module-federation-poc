@@ -33,7 +33,7 @@ node apps/shell/.next/standalone/apps/shell/server.js
 
 # Search a string but exclude node_modules
 # ========================================
-# find . -type d -name 'node_modules' -prune -o -type f -exec grep -l 'http://localhost:3001' {} +
+# find . -type d -name 'node_modules' -prune -o -type f -exec grep -l 'http://127.0.0.1:3001' {} +
 
 # Search a string and replace but exclude node_modules
 # ====================================================
