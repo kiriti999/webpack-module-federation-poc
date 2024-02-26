@@ -11,7 +11,7 @@ echo "Current working directory is: $current_directory"
 js_file_path="apps/shell/.next/static/ssr/remoteEntry.js"
 
 # Use grep to find the line containing the URL
-line=$(grep -A 2 '"home":' apps/shell/.next/static/ssr/remoteEntry.js | grep -oE '"(http|https)://[^"]*"')
+line=$(grep -A 2 '"home":' "apps/shell/.next/static/ssr/remoteEntry.js" | grep -oE '"(http|https)://[^"]*"')
 
 # Use awk to extract the URL
 current_url=$(echo "$line" | grep -Eo 'https?://[^ /]+' | head -1)
