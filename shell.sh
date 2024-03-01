@@ -25,6 +25,14 @@ find ./apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|$curre
 find ./apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|$current_url|$URL|g" {} +
 find ./apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|$current_url|$URL|g" {} +
 
+# find ./apps/shell/next.config.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+# find ./apps/shell/.next/standalone/apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+# find ./apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+# find ./apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+# find ./apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+# find ./apps/shell/.next/standalone/apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+# find ./apps/shell/.next/standalone/apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
+
 node apps/shell/.next/standalone/apps/shell/server.js
 
 
