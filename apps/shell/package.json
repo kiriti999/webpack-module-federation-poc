@@ -1,17 +1,18 @@
 {
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "external-remotes-plugin": "^1.0.0",
     "next": "13.4.0",
     "next-i18next": "14.0.3"
   },
   "devDependencies": {
     "@module-federation/nextjs-mf": "6.4.0",
-    "autoprefixer": "10.4.14",
-    "webpack": "5.78.0",
     "@types/react": "18.0.22",
     "@types/react-dom": "18.0.7",
+    "autoprefixer": "10.4.14",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "webpack": "5.78.0"
   },
   "main": "./index.ts",
   "name": "shell",
