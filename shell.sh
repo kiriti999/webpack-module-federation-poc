@@ -8,7 +8,7 @@ current_directory=$(pwd)
 echo "Current working directory is: $current_directory"
 
 # Specify the JavaScript file
-js_file_path="apps/shell/.next/static/ssr/remoteEntry.js"
+js_file_path="apps/shell/.next/static/ssr/remoteEntry.js" 
 
 # Use grep to find the line containing the URL
 line=$(grep -A 2 '"home":' "apps/shell/.next/static/ssr/remoteEntry.js" | grep -oE '"(http|https)://[^"]*"')
@@ -19,21 +19,7 @@ current_url=$(echo "$line" | grep -Eo 'https?://[^ /]+' | head -1)
 # Print the result
 echo "Extracted URL is: $current_url"
 
-find ./apps/shell/next.config.js -type f -exec sed -i "s|$current_url|$URL|g" {} +
-find ./apps/shell/.next/standalone/apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|$current_url|$URL|g" {} +
-find ./apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|$current_url|$URL|g" {} +
-find ./apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|$current_url|$URL|g" {} +
-find ./apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|$current_url|$URL|g" {} +
-
-# find ./apps/shell/next.config.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
-# find ./apps/shell/.next/standalone/apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
-# find ./apps/shell/.next/server/webpack-runtime.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
-# find ./apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
-# find ./apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
-# find ./apps/shell/.next/standalone/apps/shell/.next/static/ssr/remoteEntry.js -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
-# find ./apps/shell/.next/standalone/apps/shell/.next/static/chunks/pages -type f -exec sed -i "s|\\${current_url}|$URL|g" {} +
-
-node apps/shell/.next/standalone/apps/shell/server.js
+find ./apps -type f -name "*.js" ! -path "./node_modules/*" -exec sed -i "s|$current_url|$URL|g" {} +
 
 
 # info
@@ -73,3 +59,5 @@ node apps/shell/.next/standalone/apps/shell/server.js
 # ./apps/shell/.next/cache/webpack/server-production/index.pack.old
 # ./apps/shell/.next/cache/webpack/client-production/0.pack
 # ./apps/shell/.next/cache/webpack/client-production/index.pack
+
+
