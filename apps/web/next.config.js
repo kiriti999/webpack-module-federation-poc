@@ -3,7 +3,7 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
 
 module.exports = {
-  output: "standalone",
+  output: "export",
   transpilePackages: ["@repo/ui"],
   webpack: (config, options) => {
     config.experiments = { topLevelAwait: true, layers: true };
